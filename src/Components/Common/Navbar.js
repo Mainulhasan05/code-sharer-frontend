@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -10,22 +11,22 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#" className="text-xl font-bold text-white">
+            <Link href="/" className="text-xl font-bold text-white">
               Codesharer
-            </a>
+            </Link>
           </div>
 
           {/* Menu Items */}
           <div className="hidden md:flex space-x-4">
-            <a href="#" className="hover:text-gray-300">
+            <Link href="/pricing" className="hover:text-gray-300">
               Pricing
-            </a>
-            <a href="#" className="hover:text-gray-300">
+            </Link>
+            <Link href="/signup" className="hover:text-gray-300">
               Signup
-            </a>
-            <a href="#" className="hover:text-gray-300">
+            </Link>
+            <Link href="/login" className="hover:text-gray-300">
               Login
-            </a>
+            </Link>
           </div>
 
           {/* Hamburger Menu */}
@@ -72,18 +73,18 @@ export default function Navbar() {
             >
               Pricing
             </a>
-            <a
-              href="#"
+            <Link
+              href="/signup"
               className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
             >
               Signup
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/login"
               className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
             >
               Login
-            </a>
+            </Link>
           </div>
         </div>
       )}
