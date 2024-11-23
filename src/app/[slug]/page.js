@@ -1,14 +1,14 @@
 import CodeEditorPage from "@/Components/CodeEditorPage/CodeEditorPage";
 import React from "react";
 import axiosInstance from "@/utils/axiosInstance";
+import { notFound } from "next/navigation";
 
 const getData = async (slug) => {
   try {
     const response = await axiosInstance.get(`/snippets/${slug}`);
     return response.data;
   } catch (error) {
-    console.error("Error fetching data:", error?.response?.data);
-    return null;
+    return notFound();
   }
 };
 
@@ -17,7 +17,7 @@ const page = async ({ params }) => {
   console.log(data);
   return (
     <>
-      <CodeEditorPage />
+      <CodeEditorPage data={data?.data} />
     </>
   );
 };

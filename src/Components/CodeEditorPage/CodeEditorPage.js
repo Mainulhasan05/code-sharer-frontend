@@ -1,12 +1,12 @@
-import React from 'react'
-import CodeEditor from './CodeEditor'
+import React from "react";
+import CodeEditor from "./CodeEditor";
 
-const CodeEditorPage = () => {
+const CodeEditorPage = ({ data }) => {
   return (
     <div>
-        <CodeEditor/>
+      <CodeEditor data={data} />
     </div>
-  )
-}
+  );
+};
 
-export default CodeEditorPage
+export default CodeEditorPage;

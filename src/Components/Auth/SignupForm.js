@@ -29,7 +29,7 @@ export default function SignupForm() {
         email,
         password,
       });
-      if (response.status === 200) {
+      if (response.status === 201) {
         Cookies.set("codesharer_token", response.data.token);
         window.location.href = "/dashboard";
       } else {
@@ -39,7 +39,7 @@ export default function SignupForm() {
       setLoading(false);
     } catch (err) {
       setLoading(false);
-      setError("Something went wrong. Please try again.");
+      setError(err?.response?.data?.message || "Something went wrong.");
     }
   };
 
