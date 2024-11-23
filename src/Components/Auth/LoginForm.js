@@ -30,7 +30,6 @@ export default function LoginForm() {
       console.log(response.data);
       if (response.status === 200) {
         Cookies.set("codesharer_token", response.data.token);
-
         window.location.href = "/dashboard";
       } else {
         setError("Invalid email or password. Please try again.");
@@ -64,7 +63,7 @@ export default function LoginForm() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 mt-2 border border-gray-300 rounded-md"
+              className="w-full p-3 mt-2 border border-gray-300 rounded-md text-black"
               placeholder="Enter your email"
               disabled={loading}
               required
@@ -83,7 +82,7 @@ export default function LoginForm() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 mt-2 border border-gray-300 rounded-md"
+              className="w-full p-3 mt-2 border border-gray-300 rounded-md text-black"
               placeholder="Enter your password"
               disabled={loading}
               required

@@ -27,11 +27,11 @@ export const metadata = {
     title: "Codesharer - Share and Discover Code",
     description:
       "Join Codesharer, a platform to share your code, collaborate with developers, and learn new programming techniques.",
-    url: "https://www.codesharer.com", // Replace with your actual site URL
+    url: process.env.SITE_URL,
     siteName: "Codesharer",
     images: [
       {
-        url: "https://www.codesharer.com/og-image.jpg", // Replace with an image URL for better social sharing
+        url: "/assets/logo.png", // Replace with an image URL for better social sharing
         width: 1200,
         height: 630,
         alt: "Codesharer - Share and Discover Code",
@@ -44,7 +44,7 @@ export const metadata = {
     title: "Codesharer - Share and Discover Code",
     description:
       "Codesharer is a platform to share, explore, and learn from code. Collaborate and enhance your coding skills with the community.",
-    image: "https://www.codesharer.com/twitter-image.jpg", // Replace with an image URL for better Twitter sharing
+    image: "/assets/logo.png", // Replace with an image URL for better social sharing
   },
 };
 

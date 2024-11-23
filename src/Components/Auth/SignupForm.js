@@ -65,7 +65,7 @@ export default function SignupForm() {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full p-3 mt-2 border border-gray-300 rounded-md"
+              className="w-full p-3 mt-2 border border-gray-300 rounded-md text-black"
               placeholder="Enter your full name"
               disabled={loading}
               required
@@ -84,7 +84,7 @@ export default function SignupForm() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 mt-2 border border-gray-300 rounded-md"
+              className="w-full p-3 mt-2 border border-gray-300 rounded-md text-black"
               placeholder="Enter your email"
               disabled={loading}
               required
@@ -103,7 +103,7 @@ export default function SignupForm() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 mt-2 border border-gray-300 rounded-md"
+              className="w-full p-3 mt-2 border border-gray-300 rounded-md text-black"
               placeholder="Enter your password"
               disabled={loading}
               required

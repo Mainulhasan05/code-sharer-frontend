@@ -1,0 +1,5 @@
+/* ImageComponent.module.css */
+.customImage {
+  border-radius: 8px; /* Example styling */
+  object-fit: cover; /* Ensure images cover the dimensions */
+}
