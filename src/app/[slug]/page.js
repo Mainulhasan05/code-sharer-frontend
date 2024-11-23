@@ -14,7 +14,6 @@ const getData = async (slug) => {
 
 const page = async ({ params }) => {
   const data = await getData(params.slug);
-  console.log(data);
   return (
     <>
       <CodeEditorPage data={data?.data} />
