@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
 
-
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
 
   // Ignore static assets and Next.js internal files
-  if (pathname.startsWith("/_next/static") || pathname.startsWith("/assets") || pathname.startsWith("/images/")) {
+  if (
+    pathname.startsWith("/_next/static") ||
+    pathname.startsWith("/assets") ||
+    pathname.startsWith("/images/")
+  ) {
     return NextResponse.next();
   }
 
@@ -18,18 +21,13 @@ export async function middleware(request) {
   }
 
   // Define static pages that should not be rewritten to dynamic pages
-  const staticPages = [
-    "login",
-    "signup",
-    "pricing",    
-  ];
+  const staticPages = ["login", "signup", "pricing", "dashboard"];
 
   if (staticPages.includes(slug)) {
     return NextResponse.next();
   }
 
   try {
-
     if (slug) {
       // Rewrite to the dynamic page component, e.g., /page/[slug].js
       return NextResponse.rewrite(new URL(`/${slug}`, request.url));

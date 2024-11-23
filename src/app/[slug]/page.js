@@ -1,12 +1,14 @@
-import CodeEditorPage from '@/Components/CodeEditorPage/CodeEditorPage'
-import React from 'react'
+import CodeEditorPage from "@/Components/CodeEditorPage/CodeEditorPage";
+import React from "react";
+import axiosInstance from "@/utils/axiosInstance";
 
-const page = () => {
+const page = ({ params }) => {
+  console.log(params);
   return (
     <>
-    <CodeEditorPage/>
+      <CodeEditorPage />
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;

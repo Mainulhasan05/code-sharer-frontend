@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import axiosInstance from "@/utils/axiosInstance";
+import Cookies from "js-cookie";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -21,10 +23,18 @@ export default function LoginForm() {
     // Simulating an API call
     try {
       // Replace with actual API call logic
-      const response = await new Promise((resolve) =>
-        setTimeout(() => resolve("User logged in"), 2000)
-      );
-      console.log(response);
+      const response = await axiosInstance.post("/auth/login", {
+        email,
+        password,
+      });
+      console.log(response.data);
+      if (response.status === 200) {
+        Cookies.set("codesharer_token", response.data.token);
+
+        window.location.href = "/dashboard";
+      } else {
+        setError("Invalid email or password. Please try again.");
+      }
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -35,13 +45,18 @@ export default function LoginForm() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-indigo-600 to-blue-800 flex justify-center items-center">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Login</h2>
+        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">
+          Login
+        </h2>
 
         {error && <div className="text-red-500 text-center mb-4">{error}</div>}
 
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
               Email Address
             </label>
             <input
@@ -57,7 +72,10 @@ export default function LoginForm() {
           </div>
 
           <div className="mb-6">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
               Password
             </label>
             <input

@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import axiosInstance from "@/utils/axiosInstance";
+import Cookies from "js-cookie";
 
 export default function SignupForm() {
   const [name, setName] = useState("");
@@ -22,10 +24,18 @@ export default function SignupForm() {
 
     try {
       // Replace with your actual API call logic
-      const response = await new Promise((resolve) =>
-        setTimeout(() => resolve("User signed up successfully"), 2000)
-      );
-      console.log(response);
+      const response = await axiosInstance.post("/auth/register", {
+        name,
+        email,
+        password,
+      });
+      if (response.status === 200) {
+        Cookies.set("codesharer_token", response.data.token);
+        window.location.href = "/dashboard";
+      } else {
+        setError("Invalid email or password. Please try again.");
+      }
+
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -36,13 +46,18 @@ export default function SignupForm() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-green-400 to-blue-500 flex justify-center items-center">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Sign Up</h2>
+        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">
+          Sign Up
+        </h2>
 
         {error && <div className="text-red-500 text-center mb-4">{error}</div>}
 
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+            >
               Full Name
             </label>
             <input
@@ -58,7 +73,10 @@ export default function SignupForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
               Email Address
             </label>
             <input
@@ -74,7 +92,10 @@ export default function SignupForm() {
           </div>
 
           <div className="mb-6">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
               Password
             </label>
             <input
