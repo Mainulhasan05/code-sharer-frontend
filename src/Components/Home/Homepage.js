@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CodeShareButton from "./CodeShareButton";
 
 export default function HomePage() {
   return (
@@ -14,12 +15,7 @@ export default function HomePage() {
       </header>
 
       {/* Button to Share Code */}
-      <Link
-        href="/share-code"
-        className="text-white bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 py-3 px-6 rounded-lg text-lg font-semibold transform hover:scale-105 transition duration-300"
-      >
-        Share Your Code
-      </Link>
+      <CodeShareButton />
 
       {/* Features Section */}
       <section className="mt-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
