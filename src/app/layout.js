@@ -46,7 +46,6 @@ export const metadata = {
       "Codesharer is a platform to share, explore, and learn from code. Collaborate and enhance your coding skills with the community.",
     image: "https://www.codesharer.com/twitter-image.jpg", // Replace with an image URL for better Twitter sharing
   },
-  viewport: "width=device-width, initial-scale=1.0", // Ensures the page is responsive
 };
 
 export default function RootLayout({ children }) {

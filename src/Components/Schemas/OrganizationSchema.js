@@ -4,8 +4,8 @@ import { OrganizationJsonLd } from "next-seo";
 export default function OrganizationSchema() {
   return (
     <>
-      <h1>Organization JSON-LD</h1>
       <OrganizationJsonLd
+        useAppDir={true}
         type="Corporation"
         id="https://codesharer.xyz/#corporation"
         logo="https://codesharer.xyz/logo.png" // Replace with actual logo URL
