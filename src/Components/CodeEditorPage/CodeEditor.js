@@ -5,6 +5,7 @@ import { getSocket } from "@/utils/socket";
 
 const CodeEditor = ({ data }) => {
   const [code, setCode] = useState(data?.code || ""); // Local state for the editor
+  const [language, setLanguage] = useState("javascript"); // State for selected language
   const editorRef = useRef(null); // Reference to the editor instance
   const socket = getSocket(); // Get socket instance
   const isServerUpdate = useRef(false); // Flag to track if the change is from the server
@@ -57,8 +58,28 @@ const CodeEditor = ({ data }) => {
     }
   };
 
+  const handleLanguageChange = (newLanguage) => {
+    setLanguage(newLanguage);
+  };
+
   return (
     <div>
+      <div className="mb-4">
+        {/* Language selector */}
+        <select
+          value={language}
+          onChange={(e) => handleLanguageChange(e.target.value)}
+          className="border p-2 rounded"
+        >
+          <option value="javascript">JavaScript</option>
+          <option value="python">Python</option>
+          <option value="java">Java</option>
+          <option value="cpp">C++</option>
+          <option value="ruby">Ruby</option>
+          {/* Add other languages here */}
+        </select>
+      </div>
+
       <button
         onClick={() => {
           navigator.clipboard.writeText(code);
@@ -71,7 +92,7 @@ const CodeEditor = ({ data }) => {
       {/* Code Editor */}
       <Editor
         height="90vh"
-        defaultLanguage="javascript"
+        language={language} // Dynamically set language
         value={code} // Controlled component
         theme="vs-dark"
         onChange={handleEditorChange}
