@@ -31,7 +31,7 @@ export const metadata = {
     siteName: "Codesharer",
     images: [
       {
-        url: "/assets/logo.png", // Replace with an image URL for better social sharing
+        url: `${process.env.SITE_URL}assets/logo.png`, // Replace with an image URL for better social sharing
         width: 1200,
         height: 630,
         alt: "Codesharer - Share and Discover Code",
@@ -44,7 +44,7 @@ export const metadata = {
     title: "Codesharer - Share and Discover Code",
     description:
       "Codesharer is a platform to share, explore, and learn from code. Collaborate and enhance your coding skills with the community.",
-    image: "/assets/logo.png", // Replace with an image URL for better social sharing
+    image: `${process.env.SITE_URL}assets/logo.png`, // Replace with an image URL for better social sharing
   },
 };
 
