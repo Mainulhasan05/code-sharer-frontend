@@ -3,6 +3,8 @@ import "./globals.css";
 import Navbar from "@/Components/Common/Navbar";
 import Footer from "@/Components/Common/Footer";
 import OrganizationSchema from "@/Components/Schemas/OrganizationSchema";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import { analytics } from "@/utils/gtag";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -49,14 +51,26 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  analytics.page();
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <GoogleTagManager gtmId='G-89ZKDQJBR9' />
         <OrganizationSchema />
         <Navbar />
         {children}
+        
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-89ZKDQJBR9"></script>
+{/* <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-89ZKDQJBR9');
+</script> */}
+<GoogleAnalytics gaId='G-89ZKDQJBR9' />
         <Footer />
       </body>
     </html>
