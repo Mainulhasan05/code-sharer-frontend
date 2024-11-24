@@ -106,6 +106,13 @@ const CodeEditor = ({ data }) => {
         </select>
 
         <button
+          onClick={handleRunCode}
+          className="text-white bg-green-500 hover:bg-green-600 px-4 py-2 rounded"
+        >
+          Run
+        </button>
+
+        <button
           onClick={() => {
             navigator.clipboard.writeText(code);
           }}
@@ -114,12 +121,7 @@ const CodeEditor = ({ data }) => {
           Copy Code
         </button>
 
-        <button
-          onClick={handleRunCode}
-          className="text-white bg-green-500 hover:bg-green-600 px-4 py-2 rounded"
-        >
-          Run
-        </button>
+        
       </div>
 
       <div className="flex flex-grow">
