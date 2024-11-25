@@ -21,7 +21,7 @@ export async function middleware(request) {
   }
 
   // Define static pages that should not be rewritten to dynamic pages
-  const staticPages = ["login", "signup", "pricing", "dashboard"];
+  const staticPages = ["login", "signup", "pricing", "dashboard","plans"];
 
   if (staticPages.includes(slug)) {
     return NextResponse.next();

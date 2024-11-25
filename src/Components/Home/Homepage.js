@@ -47,7 +47,7 @@ export default function HomePage() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="mt-16 bg-gray-800 text-white py-12 text-center">
+      <section className="mt-16 bg-gray-800 text-white py-12 text-center px-5 p-5">
         <h2 className="text-3xl font-semibold mb-4">Join Us Today!</h2>
         <p className="text-lg mb-6">
           Start sharing your code and discover amazing projects.
