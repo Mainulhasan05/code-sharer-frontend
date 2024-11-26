@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { getSocket } from "@/utils/socket";
+import Cookies from "js-cookie";
 
 const CodeShareButton = () => {
   const router = useRouter();
@@ -20,14 +21,20 @@ const CodeShareButton = () => {
     setLoading(true);
 
     // Emit the event to generate a session code
-    socket.emit("generateSessionCode", {}, (session) => {
-      setLoading(false);
-      if (session) {
-        router.push(`/${session?.session_code}`); // Redirect to the dynamic route
-      } else {
-        alert("Failed to generate session code. Please try again.");
+    socket.emit(
+      "generateSessionCode",
+      {
+        token: Cookies.get("codesharer_token"),
+      },
+      (session) => {
+        setLoading(false);
+        if (session) {
+          router.push(`/${session?.session_code}`); // Redirect to the dynamic route
+        } else {
+          alert("Failed to generate session code. Please try again.");
+        }
       }
-    });
+    );
   };
 
   return (

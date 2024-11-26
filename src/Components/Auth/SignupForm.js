@@ -30,7 +30,7 @@ export default function SignupForm() {
         password,
       });
       if (response.status === 201) {
-        Cookies.set("codesharer_token", response.data.token);
+        Cookies.set("codesharer_token", response.data?.data?.token);
         window.location.href = "/dashboard";
       } else {
         setError("Invalid email or password. Please try again.");

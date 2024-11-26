@@ -1,9 +1,23 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Logout handler
+  const handleLogout = () => {
+    Cookies.remove("codesharer_token");
+    setIsLoggedIn(false);
+  };
+
+  // Check login status on mount
+  useEffect(() => {
+    const token = Cookies.get("codesharer_token");
+    setIsLoggedIn(!!token);
+  }, []);
 
   return (
     <nav className="bg-gray-800 text-white">
@@ -16,20 +30,36 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Menu Items */}
+          {/* Desktop Menu */}
           <div className="hidden md:flex space-x-4">
             <Link href="/pricing" className="hover:text-gray-300">
               Pricing
             </Link>
-            <Link href="/signup" className="hover:text-gray-300">
-              Signup
-            </Link>
-            <Link href="/login" className="hover:text-gray-300">
-              Login
-            </Link>
+            {!isLoggedIn ? (
+              <>
+                <Link href="/signup" className="hover:text-gray-300">
+                  Signup
+                </Link>
+                <Link href="/login" className="hover:text-gray-300">
+                  Login
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link href="/dashboard" className="hover:text-gray-300">
+                  Dashboard
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="hover:text-gray-300 focus:outline-none"
+                >
+                  Logout
+                </button>
+              </>
+            )}
           </div>
 
-          {/* Hamburger Menu */}
+          {/* Mobile Menu Toggle */}
           <div className="flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -67,24 +97,43 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a
-              href="#"
+            <Link
+              href="/pricing"
               className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
             >
               Pricing
-            </a>
-            <Link
-              href="/signup"
-              className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-            >
-              Signup
             </Link>
-            <Link
-              href="/login"
-              className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-            >
-              Login
-            </Link>
+            {!isLoggedIn ? (
+              <>
+                <Link
+                  href="/signup"
+                  className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
+                >
+                  Signup
+                </Link>
+                <Link
+                  href="/login"
+                  className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
+                >
+                  Login
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/dashboard"
+                  className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
+                >
+                  Dashboard
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
+                >
+                  Logout
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
