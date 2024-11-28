@@ -18,6 +18,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
+  
   title: "Codesharer - Share and Discover Code",
   description:
     "Codesharer is a platform to share, explore, and learn from code written by developers around the world. Collaborate with others and enhance your coding skills.",
@@ -48,6 +49,25 @@ export const metadata = {
       "Codesharer is a platform to share, explore, and learn from code. Collaborate and enhance your coding skills with the community.",
     image: `${process.env.SITE_URL}assets/logo.png`, // Replace with an image URL for better social sharing
   },
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en-US': '/',
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  
+  
 };
 
 export default function RootLayout({ children }) {
