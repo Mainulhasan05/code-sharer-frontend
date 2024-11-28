@@ -27,9 +27,11 @@ const CodeShareButton = () => {
         token: Cookies.get("codesharer_token"),
       },
       (session) => {
-        setLoading(false);
+        
         if (session) {
-          router.push(`/${session?.session_code}`); // Redirect to the dynamic route
+          router.push(`/${session?.session_code}`); 
+          
+          setTimeout(() => setLoading(false), 1000);
         } else {
           alert("Failed to generate session code. Please try again.");
         }
